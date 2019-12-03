@@ -1,0 +1,34 @@
+{
+  "name": "osfrontend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.html",
+  "browserslist": [
+    ">= 1%",
+    "not ie <=11"
+  ],
+  "scripts": {
+    "start": "rimraf  dist .cache && parcel index.html src/pages/**/*.html --open",
+    "build": "rimfaf  dist .cache && parcel index.html src/pages/**/*.html --open",
+    "sass": "sass src/assets/scss/materialize.scss src/assets/css/materialize.css",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "cssnano": "^4.1.10",
+    "rimraf": "^3.0.0"
+  },
+  "dependencies": {
+    "@tarekraafat/autocomplete.js": "^7.2.0",
+    "axios": "^0.19.0",
+    "browserslist": "^4.7.2",
+    "firebase": "^7.3.0",
+    "materialize-css": "^1.0.0",
+    "modern-css-reset": "^1.0.4",
+    "moment": "^2.24.0",
+    "sweetalert2": "^9.4.0",
+    "tabulator-tables": "^4.5.1"
+  }
+}

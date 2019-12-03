@@ -1,0 +1,9 @@
+body {
+  background: #dedede;
+}
+
+#app-root {
+  height: 99.9vh;
+  width: 100%;
+  border: none;
+}

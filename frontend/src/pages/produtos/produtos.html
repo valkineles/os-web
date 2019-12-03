@@ -1,0 +1,50 @@
+<template>
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Produtos</title>
+        <link href="../../../node_modules/tabulator-tables/dist/css/semantic-ui/tabulator_semantic-ui.min.css" rel="stylesheet">
+        <script defer src="produtos.js"></script>
+        <link async rel="stylesheet" href="produtos.css">
+    </head>
+
+
+    <div class="container">
+        <h1>Produtos</h1>
+        <div id="listagem">
+            <div id="datatable"></div>
+
+            <div class="fixed-action-btn">
+                <a id="btnAdd" class="btn-floating btn-large">
+                    <i class="large material-icons">add</i>
+                </a>
+            </div>
+        </div>
+        <div id="insert" style="display: none;">
+            <div class="row">
+                <form id="frmProduct" class="col s12 hoverable">
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input id="txtDescricao" name="descricao" type="text" class="validate" autofocus minlength="10" required>
+                            <label for="txtDescricao">Descrição</label>
+                        </div>
+                    </div>
+                    <div <div class="input-field col s6">
+                        <input id="txtPreco" type="text" name="preco" class="validate" required>
+                        <label for="txtPreco">Preço</label>
+                    </div>
+            </div>
+
+
+            <div id="divButtons">
+                <button id="btnCancel" class="btn red darken-1">Cancelar</button>
+                <button id="btnSave" class="btn">Salvar</button>
+            </div>
+            </form>
+        </div>
+    </div>
+
+
+</template>

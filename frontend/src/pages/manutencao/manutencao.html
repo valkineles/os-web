@@ -1,0 +1,81 @@
+<template>
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>MANUTENÇÃO</title>
+        <link async href="../../../node_modules/tabulator-tables/dist/css/semantic-ui/tabulator_semantic-ui.min.css" rel="stylesheet">
+        <link async rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@7.2.0/dist/css/autoComplete.min.css">
+        <link async rel="stylesheet" href="manutencao.css">
+        <script defer src="manutencao.js"></script>
+    </head>
+
+    <div class="container">
+        <h1>Manutenção</h1>
+
+        <div id="listagem">
+            <div id="datatable"></div>
+
+            <div class="fixed-action-btn">
+                <a id="btnAdd" class="btn-floating btn-large">
+                    <i class="large material-icons">add</i>
+                </a>
+            </div>
+        </div>
+        <div id="insert" style="display: none;">
+            <div class="row">
+                <form id="frmMaintenance" class="col s12 hoverable">
+                    <div class="row">
+                        <div>
+                            <input id="autoComplete" tabindex="1">
+                            <label id='lblNome' for="txtNome"></label>
+                        </div>
+                        <div class="input-field col s4">
+                            <input id="txtDtEmissao" name="dtemissao" type="date" class="validate" autofocus required>
+                            <label for="txtDtEmissao">Data Emissão</label>
+                        </div>
+                        <div class="input-field col s4">
+                            <input id="txtStatus" name="status" type="text" class="validate" required>
+                            <label for="txtStatus">Status</label>
+                        </div>
+                        <div class="input-field col s4">
+                            <input id="txtTotal" name="total" type="number" class="validate" required>
+                            <label for="txtTotal">Total</label>
+                        </div>
+                    </div>
+                    <nav class="nav-extended">
+                        <div class="nav-content">
+                            <ul class="tabs tabs-transparent">
+                                <li class="tab"><a class="active" href="#ListagemProdutos">Produtos</a></li>
+                                <li class="tab"><a href="#ListagemServicos">Servios</a></li>
+                            </ul>
+                        </div>
+
+                    </nav>
+                    <div id="ListagemProdutos">
+                        <div id="datatableprodutos"></div>
+
+                        <div class="fixed-action-btn">
+                            <a id="btnAdd" class="btn-floating btn-large">
+                                <i class="large material-icons">add</i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div id="ListagemServicos">
+                        <h1>Serviços</h1>
+                    </div>
+
+                    <br>
+                    <div id="divButtons">
+                        <button id="btnCancel" class="btn red darken-1">Cancelar</button>
+                        <button id="btnSave" class="btn">Salvar</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+
+
+</template>

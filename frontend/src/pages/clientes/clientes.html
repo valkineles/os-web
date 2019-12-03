@@ -1,0 +1,64 @@
+<template>
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>CLIENTES</title>
+
+        <link href="../../../node_modules/tabulator-tables/dist/css/semantic-ui/tabulator_semantic-ui.min.css" rel="stylesheet">
+
+        <link async rel="stylesheet" href="clientes.css">
+        <script defer src="clientes.js"></script>
+    </head>
+
+    <div class="container all-height">
+        <h1>Clientes</h1>
+
+        <div id="listagem">
+            <div id="datatable"></div>
+
+            <div class="fixed-action-btn">
+                <a id="btnAdd" class="btn-floating btn-large">
+                    <i class="large material-icons">add</i>
+                </a>
+            </div>
+        </div>
+
+        <div id="insert" style="display: none;">
+            <div class="row">
+                <form id="frmClient" class="col s12 hoverable">
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input id="txtNome" name="nome" type="text" class="validate" autofocus minlength="10" required>
+                            <label for="txtNome">Nome</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <input id="txtApelido" type="text" name="apelido" class="validate" required>
+                            <label for="txtApelido">Apelido</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input id="txtEmail" type="email" name="email" class="validate" required>
+                            <label for="txtEmail">Email</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <input id="txtTelefone" type="text" name="telefone" class="validate">
+                            <label for="txtTelefone">Telefone</label>
+                        </div>
+                    </div>
+
+
+                    <div id="divButtons">
+                        <button id="btnCancel" class="btn red darken-1">Cancelar</button>
+                        <button id="btnSave" class="btn">Salvar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+
+</template>

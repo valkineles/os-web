@@ -1,0 +1,24 @@
+.all-height {
+  height: 100%;
+}
+
+select {
+  width: unset;
+}
+
+form {
+  background: white;
+  margin-top: 30px;
+  border-radius: 5px;
+  padding-top: 20px !important;
+}
+
+form #divButtons {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 15px;
+}
+
+#divButtons button {
+  margin: 0 10px;
+}
