@@ -31,6 +31,10 @@ export class FormMode {
 
   edit(data, functionRunOnEdit) {
     Object.keys(data).forEach(item => {
+      if (typeof data[item] === 'object' && item === 'cliente') {
+        const nomeClient = document.getElementById('lblNomeCliente');
+        nomeClient.innerHTML = data[item].nome;
+      }
       const el = document.querySelector(`[name="${item}"]`);
       if (el) {
         el.value = data[item];

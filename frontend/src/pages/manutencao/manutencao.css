@@ -23,7 +23,15 @@ form #divButtons {
   margin: 0 10px;
 }
 
-#lblNome {
+#lblNomeCliente {
   font-size: 18px !important;
   font-weight: bold !important;
+}
+#autoComplete {
+  width: 0px;
+}
+
+#autoComplete_list {
+  left: auto;
+  right: auto;
 }

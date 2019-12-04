@@ -12,5 +12,8 @@
       "src": "/(.*)",
       "dest": "src/server.js"
     }
-  ]
+  ],
+  "env": {
+    "MONGOOSE_CONNECTION_STRING": "mongodb+srv://admin:manager@cluster0-nvogb.mongodb.net/webnelson?retryWrites=true&w=majority"
+  }
 }

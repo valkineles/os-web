@@ -102,10 +102,11 @@ function editMaintenanceOnClick(event, cell) {
       }
 
       const data = Object.fromEntries(new FormData(frmMaintenance));
+      console.log(data);
       data._id = cell.getRow().getData()._id;
 
       editMaintenance(data._id, data).then(resp => {
-        console.log(resp);
+        //console.log(resp);
         message.toastSuccess('Ordem de Serviço alterada com sucesso!');
         cell.getRow().update(resp.data.data);
         formMode.list();
@@ -121,7 +122,7 @@ const autoCompletejs = new autoComplete({
       document.querySelector('#autoComplete').setAttribute('placeholder', 'Pesquisando...');
       // Fetch External Data Source
       const source = await apiClient().get('/clients?page=1&limit=200');
-      console.log(source);
+
       const data = await source.data.response.docs;
       // Post loading placeholder text
       // document.querySelector('#autoComplete').setAttribute('placeholder', 'Food & Drinks');
@@ -149,7 +150,7 @@ const autoCompletejs = new autoComplete({
   },
   resultItem: {
     content: (data, source) => {
-      console.log('content - data', data);
+      //console.log('content - data', data);
       source.innerHTML = data.match;
     },
     element: 'li'
@@ -163,10 +164,10 @@ const autoCompletejs = new autoComplete({
     // Change placeholder with the selected value
     document.querySelector('#autoComplete').setAttribute('placeholder', selection.value.nome);
     // Concole log autoComplete data feedback
-    console.log(feedback);
-    const nomeClient = document.getElementById('lblNome');
-    console.log(nomeClient);
-    console.log(selection);
+    //console.log(feedback);
+    const nomeClient = document.getElementById('lblNomeCliente');
+    //console.log(nomeClient);
+    //console.log(selection);
     nomeClient.innerHTML = selection.value.nome;
   }
 });

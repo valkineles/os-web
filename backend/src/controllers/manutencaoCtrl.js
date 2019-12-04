@@ -14,7 +14,11 @@ class ManutencaoController {
 
   async getAll(req, res) {
     const { page = 1, limit = 5 } = req.query;
-    const response = await maintenanceModel.paginate(req.filters, { page, limit });
+
+    //const response = await maintenanceModel.find().populate('cliente');
+
+    const response = await maintenanceModel.paginate(req.filters, { page, limit, populate: { path: 'cliente' } });
+    console.log(response);
     return res.status(200).json({ response });
   }
 

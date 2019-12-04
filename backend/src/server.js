@@ -15,10 +15,10 @@ server.use(cors());
 
 require('./routes/apiRoutes')(server);
 
-console.log(process.env.DATABASE_URL_FIREBASE);
-const port = 3300;
-server.listen(port, () => {
-  console.log(`*-*-*-*-*-  Servidor ativo , rodando na porta: ${port} *-*-*-*-*-*-*`);
-});
+// console.log(process.env.DATABASE_URL_FIREBASE);
+// const port = 3300;
+// server.listen(port, () => {
+//   console.log(`*-*-*-*-*-  Servidor ativo , rodando na porta: ${port} *-*-*-*-*-*-*`);
+// });
 
-// module.exports = server;
+module.exports = server;
