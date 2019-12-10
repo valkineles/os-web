@@ -1,6 +1,6 @@
 import * as materialize from 'materialize-css';
 
-import { apiClient } from '../../assets/js/axios.factory';
+import { createAutoComplete } from '../../assets/js/autocomplete';
 import { FormMode } from '../../assets/js/form.helper';
 import { message } from '../../assets/js/messages';
 import { createTabulator } from '../../assets/js/tabulator';
@@ -11,7 +11,6 @@ const formMode = new FormMode('insert', 'listagem', 'insert');
 const btnSalvar = document.getElementById('btnSave');
 const btnAdd = document.getElementById('btnAdd');
 const btnCancel = document.getElementById('btnCancel');
-const autoComplete = require('@tarekraafat/autocomplete.js/dist/js/autoComplete');
 
 materialize.Tabs.init(document.querySelectorAll('.tabs'), {});
 
@@ -35,7 +34,7 @@ const table = createTabulator('/maintenance', deleteMaintenance, editMaintenance
   { title: 'Status', field: 'status', headerFilter: 'input', headerFilterLiveFilter: false },
   { title: 'Total', field: 'total' }
 ]);
-
+/*
 const tableProdutos = createTabulator(
   '',
   deleteMaintenance,
@@ -48,7 +47,7 @@ const tableProdutos = createTabulator(
   ],
   '#datatableprodutos'
 );
-
+*/
 async function deleteMaintenance(e, cell) {
   const data = cell.getRow().getData();
   if (await message.question(`Confirma a exclusão da ordem de serviço : ${data.nome}`)) {
@@ -109,81 +108,11 @@ function editMaintenanceOnClick(event, cell) {
     };
   });
 }
-// The autoComplete.js Engine instance creator
-const nomeClient = document.getElementById('lblNome');
-const autoCompletejs = new autoComplete({
-  data: {
-    src: async () => {
-      // Loading placeholder text
-      document.querySelector('#autoComplete').setAttribute('placeholder', 'Pesquisando...');
-      // Fetch External Data Source
-      const source = await apiClient().get('/clients?page=1&limit=200');
-      const data = await source.data.response.docs;
-      // Post loading placeholder text
-      // document.querySelector('#autoComplete').setAttribute('placeholder', 'Food & Drinks');
-      // Returns Fetched data
-      return data;
-    },
-    key: ['nome'],
-    cache: false
-  },
-  placeHolder: 'Informe o nome do Cliente...',
-  searchEngine: 'strict',
-  highlight: true,
-  maxResults: 5,
-  selector: '#autoComplete',
-  threshold: 0,
-  debounce: 0,
-  resultsList: {
-    render: true
-    // container: source => {
-    //   source.setAttribute('id', 'autoComplete_list');
-    // },
-    // destination: document.querySelector('#autoComplete'),
-    // position: 'beforeend',
-    // element: 'ul'
-  },
-  noResults: () => {
-    // Action script on noResults      | (Optional)
-    const result = document.createElement('li');
-    result.setAttribute('class', 'autoComplete_result ');
-    result.setAttribute('tabindex', '1');
-    result.innerHTML = 'Nenhum registro encontrado!';
-    document.querySelector('#autoComplete_list').appendChild(result);
-    nomeClient.innerHTML = '';
-  },
-  // resultItem: {
-  //   content: (data, source) => {
-  //     console.log('content - data', data);
-  //     console.log('source - data', source);
-  //     source.innerHTML = data.match;
-  //   },
-  //   element: 'li'
-  // },
-  onSelection: feedback => {
-    document.querySelector('#autoComplete').blur();
-    const selection = feedback.selection;
-    // document.querySelector('#txtTeste').value = selection.value._id;
-    // Clear Input
+const selectorCliente = document.querySelector('#autoCompletecliente');
+console.log(selectorCliente);
+const autoCompletejscliente = createAutoComplete('lblcliente.nome', '/clients', selectorCliente, 'nome');
+const selectorProduto = document.querySelector('#autoCompleteproduto');
+console.log(selectorProduto);
 
-    document.querySelector('#autoComplete').setAttribute('data_id', selection.value._id);
-    // Change placeholder with the selected value
-    document.querySelector('#autoComplete').setAttribute('placeholder', selection.value.nome);
-    console.log(selection.value.nome);
-    nomeClient.innerHTML = selection.value.nome;
-  }
-});
-
-['focus', 'blur'].forEach(function(eventType) {
-  const resultsList = document.querySelector('#autoComplete_list');
-
-  document.querySelector('#autoComplete').addEventListener(eventType, function() {
-    // Hide results list & show other elemennts
-    if (eventType === 'blur') {
-      resultsList.style.display = 'none';
-    } else if (eventType === 'focus') {
-      // Show results list & hide other elemennts
-      resultsList.style.display = 'block';
-    }
-  });
-});
+const autoCompletejsproduto = createAutoComplete('lblproduto.descricao', '/products', selectorProduto, 'descricao');
+console.log('produto: ' + autoCompletejsproduto);

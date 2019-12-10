@@ -28,9 +28,8 @@
                 <form id="frmMaintenance" class="col s12 hoverable" autocomplete="off">
                     <div class="row">
                         <div>
-
-                            <input id="autoComplete" tabindex="1" ">
-                            <label id='lblNome' for=" txtNome"></label>
+                            <input id="autoCompletecliente" tabindex="1" ">
+                            <label id='lblcliente.nome' name='cliente.nome' for=" lblcliente.nome"></label>
                         </div>
                         <div class="input-field col s4">
                             <input id="txtDtEmissao" name="dtemissao" type="date" class="validate" autofocus required>
@@ -54,14 +53,20 @@
                         </div>
 
                     </nav>
+
                     <div id="ListagemProdutos">
+                        <div>
+                            <input id="autoComplete" tabindex="1" ">
+                            <label id='lblproduto.descricao'  for=" lblproduto.descricao"></label>
+                        </div>
+                        <!-- 
                         <div id="datatableprodutos"></div>
 
                         <div class="fixed-action-btn">
                             <a id="btnAdd" class="btn-floating btn-large">
                                 <i class="large material-icons">add</i>
                             </a>
-                        </div>
+                        </div> -->
                     </div>
 
                     <div id="ListagemServicos">

@@ -1,5 +1,3 @@
-import * as materialize from 'materialize-css';
-
 export class FormMode {
   constructor(editElement, listElement, insertElement) {
     this.editDom = document.getElementById(editElement);
@@ -29,19 +27,24 @@ export class FormMode {
     }
   }
 
-  edit(data, functionRunOnEdit) {
+  edit(data, functionRunOnEdit, mimenonic = '') {
     Object.keys(data).forEach(item => {
-      if (typeof data[item] === 'object' && item === 'cliente') {
-        const nomeClient = document.getElementById('lblNomeCliente');
-        nomeClient.innerHTML = data[item].nome;
+      if (typeof data[item] === 'object') {
+        this.edit(data[item], '', 'cliente');
       }
+
       const el = document.querySelector(`[name="${item}"]`);
+
+      const lbl = document.getElementById(`lbl${mimenonic}.${item}`);
+
+      if (lbl) {
+        lbl.innerHTML = data[item];
+      }
       if (el) {
         el.value = data[item];
       }
     });
-
-    materialize.updateTextFields();
+    //materialize.updateTextFields();
 
     this.listDom.style.display = 'none';
     this.insertDom.style.display = 'none';
