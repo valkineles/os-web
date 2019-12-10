@@ -53,7 +53,6 @@ async function deleteMaintenance(e, cell) {
   const data = cell.getRow().getData();
   if (await message.question(`Confirma a exclusão da ordem de serviço : ${data.nome}`)) {
     removeMaintenance(data._id).then(resp => {
-      console.log(resp);
       cell.getRow().delete();
       message.toastSuccess('Ordem de serviço exluído com sucesso !');
     });
@@ -81,13 +80,11 @@ function btnSalvarInserirOnClick(event) {
         return;
       }
 
-      console.log(resp.data);
       table.addRow(resp.data.data);
       formMode.list();
       message.toastSuccess('Ordem de serviço inserida com sucesso !');
     })
     .catch(err => {
-      console.log(err);
       message.toastError(err.message);
     });
 }
@@ -102,11 +99,9 @@ function editMaintenanceOnClick(event, cell) {
       }
 
       const data = Object.fromEntries(new FormData(frmMaintenance));
-      console.log(data);
       data._id = cell.getRow().getData()._id;
 
       editMaintenance(data._id, data).then(resp => {
-        //console.log(resp);
         message.toastSuccess('Ordem de Serviço alterada com sucesso!');
         cell.getRow().update(resp.data.data);
         formMode.list();
@@ -115,6 +110,7 @@ function editMaintenanceOnClick(event, cell) {
   });
 }
 // The autoComplete.js Engine instance creator
+const nomeClient = document.getElementById('lblNome');
 const autoCompletejs = new autoComplete({
   data: {
     src: async () => {
@@ -122,7 +118,6 @@ const autoCompletejs = new autoComplete({
       document.querySelector('#autoComplete').setAttribute('placeholder', 'Pesquisando...');
       // Fetch External Data Source
       const source = await apiClient().get('/clients?page=1&limit=200');
-
       const data = await source.data.response.docs;
       // Post loading placeholder text
       // document.querySelector('#autoComplete').setAttribute('placeholder', 'Food & Drinks');
@@ -133,41 +128,62 @@ const autoCompletejs = new autoComplete({
     cache: false
   },
   placeHolder: 'Informe o nome do Cliente...',
-  selector: '#autoComplete',
-  threshold: 0,
-  debounce: 0,
   searchEngine: 'strict',
   highlight: true,
   maxResults: 5,
+  selector: '#autoComplete',
+  threshold: 0,
+  debounce: 0,
   resultsList: {
-    render: true,
-    container: source => {
-      source.setAttribute('id', 'autoComplete_list');
-    },
-    destination: document.querySelector('#autoComplete'),
-    position: 'afterend',
-    element: 'ul'
+    render: true
+    // container: source => {
+    //   source.setAttribute('id', 'autoComplete_list');
+    // },
+    // destination: document.querySelector('#autoComplete'),
+    // position: 'beforeend',
+    // element: 'ul'
   },
-  resultItem: {
-    content: (data, source) => {
-      //console.log('content - data', data);
-      source.innerHTML = data.match;
-    },
-    element: 'li'
+  noResults: () => {
+    // Action script on noResults      | (Optional)
+    const result = document.createElement('li');
+    result.setAttribute('class', 'autoComplete_result ');
+    result.setAttribute('tabindex', '1');
+    result.innerHTML = 'Nenhum registro encontrado!';
+    document.querySelector('#autoComplete_list').appendChild(result);
+    nomeClient.innerHTML = '';
   },
+  // resultItem: {
+  //   content: (data, source) => {
+  //     console.log('content - data', data);
+  //     console.log('source - data', source);
+  //     source.innerHTML = data.match;
+  //   },
+  //   element: 'li'
+  // },
   onSelection: feedback => {
+    document.querySelector('#autoComplete').blur();
     const selection = feedback.selection;
-    // Render selected choice to selection div
     // document.querySelector('#txtTeste').value = selection.value._id;
     // Clear Input
+
     document.querySelector('#autoComplete').setAttribute('data_id', selection.value._id);
     // Change placeholder with the selected value
     document.querySelector('#autoComplete').setAttribute('placeholder', selection.value.nome);
-    // Concole log autoComplete data feedback
-    //console.log(feedback);
-    const nomeClient = document.getElementById('lblNomeCliente');
-    //console.log(nomeClient);
-    //console.log(selection);
+    console.log(selection.value.nome);
     nomeClient.innerHTML = selection.value.nome;
   }
+});
+
+['focus', 'blur'].forEach(function(eventType) {
+  const resultsList = document.querySelector('#autoComplete_list');
+
+  document.querySelector('#autoComplete').addEventListener(eventType, function() {
+    // Hide results list & show other elemennts
+    if (eventType === 'blur') {
+      resultsList.style.display = 'none';
+    } else if (eventType === 'focus') {
+      // Show results list & hide other elemennts
+      resultsList.style.display = 'block';
+    }
+  });
 });

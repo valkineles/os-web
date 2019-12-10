@@ -18,6 +18,8 @@
   "license": "ISC",
   "devDependencies": {
     "cssnano": "^4.1.10",
+    "cypress": "^3.7.0",
+    "faker": "^4.1.0",
     "rimraf": "^3.0.0"
   },
   "dependencies": {

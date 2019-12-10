@@ -1,4 +1,36 @@
-.all-height {
+Skip
+  to
+  content
+  Pull
+  requests
+  Issues
+  Marketplace
+  Explore
+  @valkineles
+  5
+  2
+  1
+  leandrorazevedo/os-web
+  Private
+  code
+  Issues
+  0
+  Pull
+  requests
+  0
+  Actions
+  Projects
+  0
+  Wiki
+  Security
+  Insights
+  os-web/frontend/src/pages/manutencao/manutencao.css
+  @douglastete
+  douglastete
+  Edição
+  de
+  manutenção,
+produtos e serviços e59f453 3 days ago @douglastete @leandrorazevedo 58 lines (46 sloc) 721 Bytes .all-height {
   height: 100%;
 }
 
@@ -13,25 +45,56 @@ form {
   padding-top: 20px !important;
 }
 
+.row {
+  margin-bottom: 10px;
+}
+
 form #divButtons {
   display: flex;
   justify-content: flex-end;
-  margin-bottom: 15px;
+}
+
+#frmMaintenance {
+  margin-top: 5px;
+}
+
+#frmProduct {
+  margin-top: 0;
+}
+
+#frmService {
+  margin-top: 0;
 }
 
 #divButtons button {
-  margin: 0 10px;
+  margin: 80px 10px 10px;
 }
 
-#lblNomeCliente {
+#divProdutos {
+  height: 280px;
+  margin-top: 5px;
+}
+
+#divServicos {
+  height: 280px;
+}
+
+.autoComplete_result {
+  max-width: unset !important;
+  border-left: 2px solid #0d46a0 !important;
+  border-right: 2px solid #0d46a0 !important;
+  align-content: left !important;
+}
+#autoComplete_list {
+  left: unset !important;
+  right: unset !important;
+  width: 22.5rem !important;
+}
+.autoComplete_highlighted {
+  color: #0d46a0 !important;
+}
+
+#lblNome {
   font-size: 18px !important;
   font-weight: bold !important;
-}
-#autoComplete {
-  width: 0px;
-}
-
-#autoComplete_list {
-  left: auto;
-  right: auto;
 }

@@ -66,7 +66,7 @@ function btnSalvarInserirOnClick(event) {
       }
 
       console.log(resp.data);
-      table.addRow(resp.data.data);
+      table.addRow(resp.data.data, true);
       formMode.list();
       message.toastSuccess('Cliente inserido com sucesso !');
     })
