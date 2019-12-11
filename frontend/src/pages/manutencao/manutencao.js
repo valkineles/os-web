@@ -11,6 +11,7 @@ const formMode = new FormMode('insert', 'listagem', 'insert');
 const btnSalvar = document.getElementById('btnSave');
 const btnAdd = document.getElementById('btnAdd');
 const btnCancel = document.getElementById('btnCancel');
+const btnAddProduto = document.getElementById('btnAddProduto');
 
 materialize.Tabs.init(document.querySelectorAll('.tabs'), {});
 
@@ -18,6 +19,7 @@ formMode.list();
 
 btnAdd.onclick = btnAddOnClick;
 btnCancel.onclick = btnCancelOnClick;
+btnAddProduto.onclick = btnAddProdutoOnClick;
 
 function btnAddOnClick() {
   formMode.insert(frmMaintenance, formModeInsert);
@@ -26,6 +28,9 @@ function btnAddOnClick() {
 function btnCancelOnClick(event) {
   event.preventDefault();
   formMode.list();
+}
+function btnAddProdutoOnClick() {
+  formMode.insert(frmMaintenance, formModeInsert);
 }
 
 const table = createTabulator('/maintenance', deleteMaintenance, editMaintenanceOnClick, [
@@ -98,7 +103,7 @@ function editMaintenanceOnClick(event, cell) {
 const autoCompletejscliente = createAutoComplete('/clients', '#autoCompleteClientes', 'nome');
 
 const autoCompletejsproduto = createAutoComplete('/products', '#autoCompleteProdutos', 'descricao');
-/*
+
 const tableProdutos = createTabulator(
   '',
   deleteProduct,
@@ -121,6 +126,7 @@ async function deleteProduct(e, cell) {
     });
   }
 }
+
 function editProductOnClick(event, cell) {
   formMode.edit(cell.getRow().getData(), () => {
     btnSalvar.onclick = evt => {
@@ -142,4 +148,3 @@ function editProductOnClick(event, cell) {
     };
   });
 }
-*/
