@@ -1,39 +1,3 @@
-Skip
-  to
-  content
-  Pull
-  requests
-  Issues
-  Marketplace
-  Explore
-  @valkineles
-  5
-  2
-  1
-  leandrorazevedo/os-web
-  Private
-  code
-  Issues
-  0
-  Pull
-  requests
-  0
-  Actions
-  Projects
-  0
-  Wiki
-  Security
-  Insights
-  os-web/frontend/src/pages/manutencao/manutencao.css
-  @douglastete
-  douglastete
-  Edição
-  de
-  manutenção,
-produtos e serviços e59f453 3 days ago @douglastete @leandrorazevedo 58 lines (46 sloc) 721 Bytes .all-height {
-  height: 100%;
-}
-
 select {
   width: unset;
 }
@@ -56,14 +20,6 @@ form #divButtons {
 
 #frmMaintenance {
   margin-top: 5px;
-}
-
-#frmProduct {
-  margin-top: 0;
-}
-
-#frmService {
-  margin-top: 0;
 }
 
 #divButtons button {
@@ -92,9 +48,4 @@ form #divButtons {
 }
 .autoComplete_highlighted {
   color: #0d46a0 !important;
-}
-
-#lblNome {
-  font-size: 18px !important;
-  font-weight: bold !important;
 }

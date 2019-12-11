@@ -3,14 +3,12 @@ import { apiClient } from './axios.factory';
 const autoComplete = require('@tarekraafat/autocomplete.js/dist/js/autoComplete');
 
 // The autoComplete.js Engine instance creator
-export function createAutoComplete(label, endpoint, selector, key) {
-  const lbl = document.getElementById(label);
+export function createAutoComplete(endpoint, selector, key) {
   const autoCompletejs = new autoComplete({
     data: {
       src: async () => {
         // Loading placeholder text
-        const teste = selector.setAttribute('placeholder', 'Pesquisando...');
-        console.log('teste: ' + teste);
+        document.querySelector(selector).setAttribute('placeholder', 'Pesquisando...');
         // Fetch External Data Source
         const source = await apiClient().get(`${endpoint}?page=1&limit=200`);
         const data = await source.data.response.docs;
@@ -25,7 +23,7 @@ export function createAutoComplete(label, endpoint, selector, key) {
     searchEngine: 'strict',
     highlight: true,
     maxResults: 5,
-    selector: '#autoComplete',
+    selector: selector,
     threshold: 0,
     debounce: 0,
     resultsList: {
@@ -44,16 +42,14 @@ export function createAutoComplete(label, endpoint, selector, key) {
       result.setAttribute('tabindex', '1');
       result.innerHTML = 'Nenhum registro encontrado!';
       document.querySelector('#autoComplete_list').appendChild(result);
-      lbl.innerHTML = '';
+      document.querySelector(selector).value = '';
     },
-    // resultItem: {
-    //   content: (data, source) => {
-    //     console.log('content - data', data);
-    //     console.log('source - data', source);
-    //     source.innerHTML = data.match;
-    //   },
-    //   element: 'li'
-    // },
+    resultItem: {
+      content: (data, source) => {
+        source.innerHTML = data.match;
+      },
+      element: 'li'
+    },
     onSelection: feedback => {
       document.querySelector(selector).blur();
       const selection = feedback.selection;
@@ -63,7 +59,11 @@ export function createAutoComplete(label, endpoint, selector, key) {
       document.querySelector(selector).setAttribute('data_id', selection.value._id);
       // Change placeholder with the selected value
       document.querySelector(selector).setAttribute('placeholder', selection.value.nome);
-      lbl.innerHTML = selection.value.nome;
+      if (selector === '#autoCompleteClientes') {
+        document.querySelector(selector).value = selection.value.nome;
+      } else {
+        document.querySelector(selector).value = selection.value.descricao;
+      }
     }
   });
 

@@ -34,20 +34,7 @@ const table = createTabulator('/maintenance', deleteMaintenance, editMaintenance
   { title: 'Status', field: 'status', headerFilter: 'input', headerFilterLiveFilter: false },
   { title: 'Total', field: 'total' }
 ]);
-/*
-const tableProdutos = createTabulator(
-  '',
-  deleteMaintenance,
-  editMaintenanceOnClick,
-  [
-    { title: 'ID', field: '_id', headerFilter: 'input', headerFilterLiveFilter: false },
-    { title: 'Data Emissão', field: 'dtemissao', headerFilter: 'input', headerFilterLiveFilter: false },
-    { title: 'Status', field: 'status', headerFilter: 'input', headerFilterLiveFilter: false },
-    { title: 'Total', field: 'total' }
-  ],
-  '#datatableprodutos'
-);
-*/
+
 async function deleteMaintenance(e, cell) {
   const data = cell.getRow().getData();
   if (await message.question(`Confirma a exclusão da ordem de serviço : ${data.nome}`)) {
@@ -108,11 +95,51 @@ function editMaintenanceOnClick(event, cell) {
     };
   });
 }
-const selectorCliente = document.querySelector('#autoCompletecliente');
-console.log(selectorCliente);
-const autoCompletejscliente = createAutoComplete('lblcliente.nome', '/clients', selectorCliente, 'nome');
-const selectorProduto = document.querySelector('#autoCompleteproduto');
-console.log(selectorProduto);
+const autoCompletejscliente = createAutoComplete('/clients', '#autoCompleteClientes', 'nome');
 
-const autoCompletejsproduto = createAutoComplete('lblproduto.descricao', '/products', selectorProduto, 'descricao');
-console.log('produto: ' + autoCompletejsproduto);
+const autoCompletejsproduto = createAutoComplete('/products', '#autoCompleteProdutos', 'descricao');
+/*
+const tableProdutos = createTabulator(
+  '',
+  deleteProduct,
+  editProductOnClick,
+  [
+    { title: 'ID', field: '_id', headerFilter: 'input', headerFilterLiveFilter: false },
+    { title: 'Nome Produto', field: 'descricao', headerFilter: 'input', headerFilterLiveFilter: false },
+    { title: 'Preço', field: 'preco' }
+  ],
+  '#datatableprodutos'
+);
+
+async function deleteProduct(e, cell) {
+  const data = cell.getRow().getData();
+  if (await message.question(`Confirma a exclusão do produto : ${data.nome}`)) {
+    removeProduct(data._id).then(resp => {
+      console.log(resp);
+      cell.getRow().delete();
+      message.toastSuccess('Produto exluído com sucesso !');
+    });
+  }
+}
+function editProductOnClick(event, cell) {
+  formMode.edit(cell.getRow().getData(), () => {
+    btnSalvar.onclick = evt => {
+      evt.preventDefault();
+      if (!frmProduct.checkValidity()) {
+        message.toastError('formulário inválido!');
+        return;
+      }
+
+      const data = Object.fromEntries(new FormData(frmProduct));
+      data._id = cell.getRow().getData()._id;
+
+      editProduct(data._id, data).then(resp => {
+        console.log(resp);
+        message.toastSuccess('Produto alterado com sucesso!');
+        cell.getRow().update(resp.data.data);
+        formMode.list();
+      });
+    };
+  });
+}
+*/

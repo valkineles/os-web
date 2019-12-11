@@ -93,5 +93,3 @@ function editProductOnClick(event, cell) {
     };
   });
 }
-
-function btnSalvarEditOnClick(event) {}

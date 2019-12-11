@@ -6,7 +6,7 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>MANUTENÇÃO</title>
         <link async href="../../../node_modules/tabulator-tables/dist/css/semantic-ui/tabulator_semantic-ui.min.css" rel="stylesheet">
-        <link async rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@7.2.0/dist/css/autoComplete.min.css">
+        <link async rel="stylesheet" href="../../../node_modules/@tarekraafat/autocomplete.js/dist/css/autoComplete.css">
         <link async rel="stylesheet" href="manutencao.css">
         <script defer src="manutencao.js"></script>
     </head>
@@ -27,19 +27,18 @@
             <div class="row">
                 <form id="frmMaintenance" class="col s12 hoverable" autocomplete="off">
                     <div class="row">
-                        <div>
-                            <input id="autoCompletecliente" tabindex="1" ">
-                            <label id='lblcliente.nome' name='cliente.nome' for=" lblcliente.nome"></label>
+                        <div class="input-field col s8">
+                            <input id="autoCompleteClientes" name="cliente.nome" autofocus tabindex="1">
                         </div>
                         <div class="input-field col s4">
                             <input id="txtDtEmissao" name="dtemissao" type="date" class="validate" autofocus required>
                             <label for="txtDtEmissao">Data Emissão</label>
                         </div>
-                        <div class="input-field col s4">
+                        <div class="input-field col s6">
                             <input id="txtStatus" name="status" type="text" class="validate" required>
                             <label for="txtStatus">Status</label>
                         </div>
-                        <div class="input-field col s4">
+                        <div class="input-field col s6">
                             <input id="txtTotal" name="total" type="number" class="validate" required>
                             <label for="txtTotal">Total</label>
                         </div>
@@ -55,18 +54,18 @@
                     </nav>
 
                     <div id="ListagemProdutos">
-                        <div>
-                            <input id="autoComplete" tabindex="1" ">
-                            <label id='lblproduto.descricao'  for=" lblproduto.descricao"></label>
+                        <div class="input-field col s10">
+                            <input id="autoCompleteProdutos" name="produto.descricao" tabindex="1">
+                            </a>
                         </div>
-                        <!-- 
+                        <div class="input-field col s2">
+                            <a id="btnAddProduto" class="btn-floating btn-large">
+                                <i class="large material-icons">add</i>
+
+                        </div>
                         <div id="datatableprodutos"></div>
 
-                        <div class="fixed-action-btn">
-                            <a id="btnAdd" class="btn-floating btn-large">
-                                <i class="large material-icons">add</i>
-                            </a>
-                        </div> -->
+
                     </div>
 
                     <div id="ListagemServicos">
